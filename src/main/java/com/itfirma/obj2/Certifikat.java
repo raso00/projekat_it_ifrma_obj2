@@ -22,7 +22,7 @@ public class Certifikat {
 
     @ManyToOne
     @JoinColumn(name = "osoba_id")
-    @JsonBackReference
+    @JsonBackReference("osoba-certifikati")
     public Osoba osoba;
 
     public Certifikat() {

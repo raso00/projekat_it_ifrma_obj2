@@ -23,6 +23,7 @@ public class Osoba {
 
     private String ime;
     private String prezime;
+    private String timeZone;
 
     @ManyToOne
     @JoinColumn(name = "titula_id")
@@ -53,8 +54,12 @@ public class Osoba {
     private List<Projekat> projekti = new ArrayList<>();
 
     @OneToMany(mappedBy = "osoba", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("osoba-certifikati")
     private List<Certifikat> certifikati = new ArrayList<>();
+
+    @OneToMany(mappedBy = "osoba", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference("osoba-timezone")
+    private List<TimeZoneInfo> timeZoneInfos = new ArrayList<>();
 
     public Osoba() {
     }
@@ -67,6 +72,14 @@ public class Osoba {
 
     public Long getId() {
         return id;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
     }
 
     public void setId(Long id) {
@@ -135,6 +148,14 @@ public class Osoba {
 
     public void setCertifikati(List<Certifikat> certifikati) {
         this.certifikati = certifikati;
+    }
+
+    public List<TimeZoneInfo> getTimeZoneInfos() {
+        return timeZoneInfos;
+    }
+
+    public void setTimeZoneInfos(List<TimeZoneInfo> timeZoneInfos) {
+        this.timeZoneInfos = timeZoneInfos;
     }
 
     @Override
