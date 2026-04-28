@@ -1,5 +1,6 @@
 package com.itfirma.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -33,6 +34,7 @@ public class OsobaResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAllOsobe")
+    @RolesAllowed("admin")
     public Response getAllOsobe() {
         List<Osoba> osobe=null;
         try{
