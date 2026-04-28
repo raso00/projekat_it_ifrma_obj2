@@ -5,6 +5,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import com.itfirma.obj2.Osoba;
+import com.itfirma.obj2.Certifikat;
+import com.itfirma.obj2.Ugovor;
 import com.itfirma.service.OsobaService;
 import java.util.List;
 import com.itfirma.exception.OsobaException;
@@ -40,4 +42,22 @@ public class OsobaResource {
         }
         return Response.ok().entity(osobe).build();
     }
+
+    @GET
+    @Path("/getOsobaByIme")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOsobaByIme(@QueryParam("ime") String ime) {
+        List<Osoba> osobe = osobaService.getOsobaByIme(ime);
+        return Response.ok().entity(osobe).build();
+    }
+
+    @GET
+    @Path("/getCertifikatiByOsobaId")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCertifikatiByOsobaId(@QueryParam("id") Long id) {
+        List<Certifikat> certifikati = osobaService.getCertifikatiByOsobaId(id);
+        return Response.ok().entity(certifikati).build();
+    }
+
+
 }

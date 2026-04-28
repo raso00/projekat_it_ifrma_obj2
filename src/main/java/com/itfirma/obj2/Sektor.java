@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NamedQuery(name = Sektor.GET_ALL_SEKTORI, query = "Select s from Sektor s")
-@Setter
-@Getter
-@NoArgsConstructor
-@EqualsAndHashCode
+
 public class Sektor {
 
     public static final String GET_ALL_SEKTORI = "GetAllSektori";
@@ -33,6 +30,9 @@ public class Sektor {
     )
     public List<Osoba> osobe;
 
+    @OneToOne(mappedBy = "sektor", cascade = CascadeType.ALL)
+    public Budzet budzet;
+
     @ManyToMany
     @JoinTable(
             name = "sektor_pozicija",
@@ -44,5 +44,23 @@ public class Sektor {
     @OneToMany(mappedBy = "sektor")
     public List<Projekat> projekti;
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Sektor sektor)) return false;
+        return Objects.equals(id, sektor.id) && Objects.equals(naziv, sektor.naziv);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, naziv);
+    }
+
+    @Override
+    public String toString() {
+        return "Sektor{" +
+                "id=" + id +
+                ", naziv='" + naziv + '\'' +
+                '}';
+    }
 
 }

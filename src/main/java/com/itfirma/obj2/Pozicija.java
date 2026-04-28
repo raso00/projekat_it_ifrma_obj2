@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NamedQuery(name = Pozicija.GET_ALL_POZICIJE, query = "Select p from Pozicija p")
-@Setter
-@Getter
-@NoArgsConstructor
-@EqualsAndHashCode
+
 
 public class Pozicija {
 
@@ -29,5 +26,23 @@ public class Pozicija {
     @ManyToMany(mappedBy = "pozicije")
     public List<Sektor> sektori;
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Pozicija pozicija)) return false;
+        return Objects.equals(id, pozicija.id) && Objects.equals(naziv, pozicija.naziv);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, naziv);
+    }
+
+    @Override
+    public String toString() {
+        return "Pozicija{" +
+                "id=" + id +
+                ", naziv='" + naziv + '\'' +
+                '}';
+    }
 
 }
