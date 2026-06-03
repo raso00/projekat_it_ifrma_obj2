@@ -61,6 +61,10 @@ public class Osoba {
     @JsonManagedReference("osoba-timezone")
     private List<TimeZoneInfo> timeZoneInfos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "osoba", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference("osoba-currency")
+    private List<CurrencyResponse> currencyResponses = new ArrayList<>();
+
     public Osoba() {
     }
 
@@ -156,6 +160,14 @@ public class Osoba {
 
     public void setTimeZoneInfos(List<TimeZoneInfo> timeZoneInfos) {
         this.timeZoneInfos = timeZoneInfos;
+    }
+
+    public List<CurrencyResponse> getCurrencyResponses() {
+        return currencyResponses;
+    }
+
+    public void setCurrencyResponses(List<CurrencyResponse> currencyResponses) {
+        this.currencyResponses = currencyResponses;
     }
 
     @Override
