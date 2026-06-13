@@ -3,14 +3,16 @@ package com.itfirma.client;
 import com.itfirma.obj2.Country;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
+import java.util.List;
 
-@RegisterRestClient(configKey = "country-api")
+@RegisterRestClient(configKey = "api-country")
 public interface CountryClient {
 
     @GET
-    @Path("/api/countries")
-    Country getCountryByCode(@QueryParam("code") String code);
+    @Path("/Countries")
+    @Produces(MediaType.APPLICATION_JSON)
+    List<Country> getCountries();
 }

@@ -14,16 +14,16 @@ public class Certifikat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="certifikat_seq")
     @SequenceGenerator(name="certifikat_seq", sequenceName="certifikat_seq", allocationSize=1)
-    public Long id;
+    private Long id;
 
-    public String naziv;
-    public String institucija;
-    public String datumIzdavanja;
+    private String naziv;
+    private String institucija;
+    private String datumIzdavanja;
 
     @ManyToOne
     @JoinColumn(name = "osoba_id")
     @JsonBackReference("osoba-certifikati")
-    public Osoba osoba;
+    private Osoba osoba;
 
     public Certifikat() {
     }
