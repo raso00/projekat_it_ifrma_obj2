@@ -33,7 +33,7 @@ public class HolidayResource {
     @GET
     @Path("/getRandomHolidays")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("admin")
+   // @RolesAllowed("admin")
     @Transactional
     public Response getRandomHolidays(@QueryParam("from") String from,
                                       @QueryParam("to") String to) {

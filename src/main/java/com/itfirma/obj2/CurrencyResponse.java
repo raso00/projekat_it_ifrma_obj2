@@ -11,7 +11,10 @@ public class CurrencyResponse {
     @SequenceGenerator(name = "currency_seq", sequenceName = "currency_seq", allocationSize = 1)
     public Long id;
 
+    @Column(name = "from_currency")
     public String from;
+
+    @Column(name = "to_currency")
     public String to;
     public double rate;
     public String date;

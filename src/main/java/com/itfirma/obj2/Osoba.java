@@ -61,6 +61,14 @@ public class Osoba {
     @JsonManagedReference("osoba-timezone")
     private List<TimeZoneInfo> timeZoneInfos = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "osoba_uploadedfile",
+        joinColumns = @JoinColumn(name = "osoba_id"),
+        inverseJoinColumns = @JoinColumn(name = "uploadedfile_id")
+    )
+    private List<UploadedFile> uploadedFiles = new ArrayList<>();
+
     @OneToMany(mappedBy = "osoba", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference("osoba-currency")
     private List<CurrencyResponse> currencyResponses = new ArrayList<>();
@@ -168,6 +176,14 @@ public class Osoba {
 
     public void setCurrencyResponses(List<CurrencyResponse> currencyResponses) {
         this.currencyResponses = currencyResponses;
+    }
+
+    public List<UploadedFile> getUploadedFiles() {
+        return uploadedFiles;
+    }
+
+    public void setUploadedFiles(List<UploadedFile> uploadedFiles) {
+        this.uploadedFiles = uploadedFiles;
     }
 
     @Override
